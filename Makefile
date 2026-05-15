@@ -19,3 +19,15 @@ format-check:
 lint:
 	@echo "Linting code..."
 	$(LINTER) $(SOURCES) -- -I$(INCDIR)
+
+build:
+	cmake -S . -B build -G Ninja
+
+compile:
+	cmake --build build
+
+clean:
+	rm -rf build
+
+test:
+	ctest --test-dir build --output-on-failure

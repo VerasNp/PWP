@@ -7,4 +7,6 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 project(PWP LANGUAGES CXX)
 
+enable_testing()
+
 add_subdirectory(PWP)

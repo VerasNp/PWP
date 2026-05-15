@@ -1,10 +1,13 @@
 #pragma once
 
+#include "derivate/DerivateBase.hpp"
 #include <cmath>
 #include <vector>
 
 namespace PWP::lib::numeric_methods::derivate::stencil {
 struct Stencil {
+    DerivativeOrder derivateOrder;
+    ErrorOrder errorOrder;
     std::vector<double> coefficient;
     std::vector<double> offset;
     double denominator;
@@ -19,11 +22,4 @@ inline auto apply(const Stencil &stencil, double (*func)(double), double xValue,
     }
     return sum / (stencil.denominator * std::pow(hValue, stencil.denominator_power));
 }
-
-inline const Stencil firstForward2Points = {{1, -1}, {1, 0}, 1.0, 1};
-inline const Stencil firstForward3Points = {{-3.0, 4.0, -1.0}, {0, 1, 2.0}, 2.0, 1};
-inline const Stencil secondForward2Points = {{1.0, -2.0, 1.0}, {2.0, 1.0, 0}, 1.0, 2};
-inline const Stencil thirdForward2Points = {{1.0, -3.0, 3.0, -1.0}, {3.0, 2.0, 1.0, 0}, 1.0, 3};
-inline const Stencil fourthForward2Points = {
-    {1.0, -4.0, 6.0, -4.0, 1.0}, {4.0, 3.0, 2.0, 1.0, 0.0}, 1.0, 4};
 } // namespace PWP::lib::numeric_methods::derivate::stencil

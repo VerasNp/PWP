@@ -4,7 +4,7 @@ set(TestsToRun
 
 foreach(test ${TestsToRun})
     get_filename_component(TName ${test} NAME_WE)
-    message(${TName})
+    string(REPLACE ".test" "" TName ${TName}) # Forward.test → Forward
     add_executable(${TName} ${test} "${CMAKE_CURRENT_SOURCE_DIR}/main.cpp")
     target_compile_features(${TName} PRIVATE cxx_std_20)
     target_link_libraries(${TName} PRIVATE Doctest PWP numeric_methods)
