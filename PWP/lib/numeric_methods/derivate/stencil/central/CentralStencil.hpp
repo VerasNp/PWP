@@ -1,12 +1,12 @@
 #pragma once
 #include "derivate/stencil/Stencil.hpp"
-#include "derivate/stencil/forward/d1Stencil.hpp"
+#include "derivate/stencil/central/d1Stencil.hpp"
 #include <array>
 #include <stdexcept>
 
-namespace PWP::lib::numeric_methods::derivate::stencil::forward {
+namespace PWP::lib::numeric_methods::derivate::stencil::central {
 
-inline const std::array<Stencil, 16> lookupArray = {{firstForward2Points}};
+inline const std::array<Stencil, 16> lookupArray = {{firstCentral2Points}};
 
 inline auto get(DerivativeOrder derivateOrder, ErrorOrder errorOrder) -> const Stencil & {
     for (const auto &stencil : lookupArray) {
@@ -17,4 +17,4 @@ inline auto get(DerivativeOrder derivateOrder, ErrorOrder errorOrder) -> const S
     throw std::invalid_argument("Stencil não encontrado");
 }
 
-} // namespace PWP::lib::numeric_methods::derivate::stencil::forward
+} // namespace PWP::lib::numeric_methods::derivate::stencil::central
