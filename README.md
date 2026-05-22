@@ -14,3 +14,9 @@
 ## PVC (Problema de valores de contorno)
 - Diferenças finitas
 - Método dis elementos finitos
+
+## 
+
+`cmake -B build -G Ninja`
+
+`cmake --build build`

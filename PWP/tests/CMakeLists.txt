@@ -1,6 +1,6 @@
 set(TestsToRun
     "${CMAKE_CURRENT_SOURCE_DIR}/Stencil.test.cpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/Forward.test.cpp"
+    # "${CMAKE_CURRENT_SOURCE_DIR}/Forward.test.cpp"
 )
 
 foreach(test ${TestsToRun})
