@@ -1,12 +1,19 @@
 #pragma once
 #include "derivate/stencil/Stencil.hpp"
 #include "derivate/stencil/forward/d1Stencil.hpp"
+#include "derivate/stencil/forward/d2Stencil.hpp"
+#include "derivate/stencil/forward/d3Stencil.hpp"
+#include "derivate/stencil/forward/d4Stencil.hpp"
 #include <array>
 #include <stdexcept>
 
 namespace PWP::lib::numeric_methods::derivate::stencil::forward {
 
-inline const std::array<Stencil, 16> lookupArray = {{firstForward2Points}};
+inline const std::array<Stencil, 16> lookupArray = {
+    {firstForward2Points, firstForward3Points, firstForward4Points, firstForward5Points,
+     secondForward3Points, secondForward4Points, secondForward5Points, secondForward6Points,
+     thirdForward4Points, thirdForward5Points, thirdForward6Points, thirdForward7Points,
+     fourthForward5Points, fourthForward6Points, fourthForward7Points, fourthForward8Points}};
 
 inline auto get(DerivativeOrder derivateOrder, ErrorOrder errorOrder) -> const Stencil & {
     for (const auto &stencil : lookupArray) {
