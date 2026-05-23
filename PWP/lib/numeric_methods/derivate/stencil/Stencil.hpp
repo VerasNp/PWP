@@ -20,6 +20,7 @@ inline auto apply(const Stencil &stencil, double (*func)(double), double xValue,
     for (std::size_t i = 0; i < stencil.coefficient.size(); ++i) {
         sum += stencil.coefficient[i] * func(xValue + (stencil.offset[i] * hValue));
     }
-    return sum / (stencil.denominator * std::pow(hValue, stencil.denominator_power));
+    double divisor = stencil.denominator * std::pow(hValue, stencil.denominator_power);
+    return sum / divisor;
 }
 } // namespace PWP::lib::numeric_methods::derivate::stencil

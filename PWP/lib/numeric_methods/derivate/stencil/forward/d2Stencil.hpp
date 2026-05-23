@@ -8,7 +8,7 @@ inline const derivate::stencil::Stencil secondForward3Points = {.derivateOrder =
                                                                 .coefficient = {1.0, -2.0, 1.0},
                                                                 .offset = {0, 1.0, 2.0},
                                                                 .denominator = 1.0,
-                                                                .denominator_power = 1};
+                                                                .denominator_power = 2};
 inline const derivate::stencil::Stencil secondForward4Points = {};
 inline const derivate::stencil::Stencil secondForward5Points = {};
 inline const derivate::stencil::Stencil secondForward6Points = {};

@@ -8,7 +8,7 @@ inline const derivate::stencil::Stencil thirdForward4Points = {
     .coefficient = {-1.0, 3.0, -3.0, 1.0},
     .offset = {0, 1.0, 2.0, 3.0},
     .denominator = 1.0,
-    .denominator_power = 1
+    .denominator_power = 3
 };
 inline const derivate::stencil::Stencil thirdForward5Points = {};
 inline const derivate::stencil::Stencil thirdForward6Points = {};
