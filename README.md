@@ -1,3 +1,16 @@
+## Derivadas
+
+## Integrais
+
+### Regras de quadratura
+
+#### Regras de Newton-Cotes
+
+- Regra do trapézio
+- Regra de Simpson 1/3
+- Regra de Simpson 3/8
+- Regra de Milne
+
 ## Autovalores e autovetores
 
 - Método da potência regular;
