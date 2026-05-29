@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Vector.hpp"
 #include "utils.hpp"
 #include <sys/types.h>
 
@@ -83,6 +84,8 @@ class Matrix {
      * @return Matrix The product
      */
     auto operator*(Matrix matrix) -> Matrix;
+
+    auto operator*(Vector vector) -> Vector;
 
     /**
      * @brief Assign a matrix to another

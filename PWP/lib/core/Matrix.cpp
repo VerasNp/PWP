@@ -1,4 +1,5 @@
 #include "Matrix.hpp"
+#include "Vector.hpp"
 #include <sys/types.h>
 PWP::lib::core::Matrix::Matrix(uint rows, uint columns) {
     this->elements_ = nullptr;
@@ -104,6 +105,18 @@ auto PWP::lib::core::Matrix::operator*(PWP::lib::core::Matrix matrix) -> PWP::li
             }
             result[i][j] = sum;
         }
+    }
+    return result;
+}
+
+auto PWP::lib::core::Matrix::operator*(PWP::lib::core::Vector vector) -> PWP::lib::core::Vector {
+    PWP::lib::core::Vector result(this->rows_);
+    for (uint i = 0; i < this->rows_; i++) {
+        core::element sum = 0.0;
+        for (uint k = 0; k < this->columns_; k++) {
+            sum += this->elements_[i][k] * vector[k];
+        }
+        result[i] = sum;
     }
     return result;
 }

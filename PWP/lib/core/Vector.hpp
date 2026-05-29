@@ -17,6 +17,8 @@ class Vector {
 
     auto transpose() -> Vector;
     auto normalize() -> Vector;
+    auto magnitude() -> double;
+    auto dot(Vector vector) -> double;
 
     auto operator=(const Vector &other) -> Vector &;
     auto operator[](uint index) const -> double { return this->elements_[index]; }

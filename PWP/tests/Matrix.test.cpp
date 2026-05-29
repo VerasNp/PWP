@@ -59,4 +59,21 @@ TEST_CASE("Matrix") {
         CHECK_EQ(resultMatrix[1][0], 139);
         CHECK_EQ(resultMatrix[1][1], 154);
     }
+    SUBCASE("should multiply matrix by vector") {
+        double matrixValues[] = {1, 2, 3, 4, 5, 6};
+        double vectorValues[] = {1, 2, 3};
+        PWP::lib::core::Matrix matrix(2, 3, matrixValues);
+        PWP::lib::core::Vector vector(3, vectorValues);
+        PWP::lib::core::Vector result = matrix * vector;
+        CHECK_EQ(result[0], 14);
+        CHECK_EQ(result[1], 32);
+    }
+    SUBCASE("should multiply matrix by vector with ones") {
+        double matrixValues[] = {1, 2, 3, 4};
+        PWP::lib::core::Matrix matrix(2, 2, matrixValues);
+        PWP::lib::core::Vector vector(2, 1.0);
+        PWP::lib::core::Vector result = matrix * vector;
+        CHECK_EQ(result[0], 3);
+        CHECK_EQ(result[1], 7);
+    }
 }

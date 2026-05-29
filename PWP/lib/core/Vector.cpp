@@ -1,5 +1,7 @@
 #include "Vector.hpp"
 #include "utils.hpp"
+#include <cmath>
+#include <sys/types.h>
 
 PWP::lib::core::Vector::Vector(uint size, Orientation orientation) {
     this->size_ = size;
@@ -70,6 +72,22 @@ auto PWP::lib::core::Vector::transpose() -> Vector {
     return transposed;
 }
 
+auto PWP::lib::core::Vector::magnitude() -> double { return std::sqrt(this->dot(*this)); }
+
 auto PWP::lib::core::Vector::normalize() -> Vector {
-  
+    double magnitude = this->magnitude();
+    auto *normalizedItems = new double[this->size_];
+    for (uint i = 0; i < this->size_; i++) {
+        normalizedItems[i] = this->elements_[i] / magnitude;
+    }
+    Vector normalizedVector(this->size_, normalizedItems);
+    delete[] normalizedItems;
+    return normalizedVector;
+}
+auto PWP::lib::core::Vector::dot(PWP::lib::core::Vector vector) -> double {
+    double sum = 0;
+    for (uint i = 0; i < this->size_; i++) {
+        sum += this->elements_[i] * vector.elements_[i];
+    }
+    return sum;
 }

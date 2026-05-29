@@ -17,7 +17,7 @@ A mathematical toolkit designed to solve numerical problems.
 
 - Método da potência
   - Método da potência regular: encontra o autovalor dominante (maior em módulo) e seu autovetor associado.
-  - Método da potência inversa;
+  - Método da potência inversa: encontra o autovalor de menor módulo e seu autovetor associado.
 - Método da potência com deslocamento;
 - Métodos de transformação de similaridade
 
