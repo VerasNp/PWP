@@ -1,3 +1,5 @@
+A mathematical toolkit designed to solve numerical problems.
+
 ## Derivadas
 
 ## Integrais
@@ -13,8 +15,9 @@
 
 ## Autovalores e autovetores
 
-- Método da potência regular;
-- Método da potência inversa;
+- Método da potência
+  - Método da potência regular: encontra o autovalor dominante (maior em módulo) e seu autovetor associado.
+  - Método da potência inversa;
 - Método da potência com deslocamento;
 - Métodos de transformação de similaridade
 
@@ -25,10 +28,11 @@
   - Método Passos Múltiplos
 
 ## PVC (Problema de valores de contorno)
+
 - Diferenças finitas
 - Método dis elementos finitos
 
-## 
+##
 
 `cmake -B build -G Ninja`
 

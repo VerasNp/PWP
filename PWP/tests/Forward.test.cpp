@@ -2,7 +2,6 @@
 #include "derivate/DerivateBase.hpp"
 #include "doctest.h"
 #include <cstdlib>
-#include <iostream>
 
 using namespace PWP::lib::numeric_methods::derivate;
 

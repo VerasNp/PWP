@@ -7,6 +7,11 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 project(PWP LANGUAGES CXX)
 
+if(ENABLE_ASAN)
+    add_compile_options(-fsanitize=address -g)
+    add_link_options(-fsanitize=address)
+endif()
+
 enable_testing()
 
 add_subdirectory(PWP)

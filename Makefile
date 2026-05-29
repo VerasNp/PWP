@@ -23,6 +23,9 @@ lint:
 build:
 	cmake -S . -B build -G Ninja
 
+build-asan:
+	cmake -S . -B build -G Ninja -DENABLE_ASAN=ON
+
 compile:
 	cmake --build build
 
@@ -31,3 +34,6 @@ clean:
 
 test:
 	ctest --test-dir build --output-on-failure
+
+test-verbose:
+	ctest --test-dir build --output-on-failure -VV
