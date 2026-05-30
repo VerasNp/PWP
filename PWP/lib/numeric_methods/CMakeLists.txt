@@ -1,6 +1,7 @@
 add_library(numeric_methods
     "${CMAKE_CURRENT_SOURCE_DIR}/derivate/Derivate.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/eigenvalue_problems/PowerMethod.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/matrices_factorization/LUDecomposition.cpp"
 )
 
 target_sources(numeric_methods
@@ -13,6 +14,7 @@ target_sources(numeric_methods
     "${CMAKE_CURRENT_SOURCE_DIR}/derivate/stencil/forward/ForwardStencil.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/derivate/Derivate.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/eigenvalue_problems/PowerMethod.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/matrices_factorization/LUDecomposition.hpp"
 )
 
 target_include_directories(numeric_methods
