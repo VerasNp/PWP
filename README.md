@@ -1,3 +1,5 @@
+# PWP (Penguin With a Pencil)
+
 A mathematical toolkit designed to solve numerical problems.
 
 ## Derivadas
@@ -20,6 +22,10 @@ A mathematical toolkit designed to solve numerical problems.
   - Método da potência inversa: encontra o autovalor de menor módulo e seu autovetor associado.
 - Método da potência com deslocamento;
 - Métodos de transformação de similaridade
+
+### Utilidades
+
+- Fatoração LU: Uso do algoritmo de Crout para decomposição de matrizes em produtos de matrizes triangulares inferiores e superiores gerando uma matriz única que armazena as informações de ambas as matrizes.
 
 ## Teorema do valor intermediário
 
