@@ -23,16 +23,16 @@ auto PWP::lib::numeric_methods::eigenvalue_problems::PowerMethod::calculateRegul
     return std::make_pair(eigenValueNew, eigenVector);
 }
 
-auto PWP::lib::numeric_methods::eigenvalue_problems::PowerMethod::calculateInverse(
-    core::Matrix matrix, core::Vector vector, double threshold)
-    -> std::pair<double, PWP::lib::core::Vector> {
-    core::Matrix luDecomposition = matrices_factorization::LUDecomposition::execute(matrix);
-    double eigenValueNew = 0;
-    core::Vector vectorNew(vector);
-    double erro = threshold + 1;
-    while (erro > threshold) {
-        double eigenValueOld = eigenValueNew;
-        core::Vector vectorOld(vectorNew);
-        core::Vector vectorOldNormalized = vectorOld.normalize();
-    }
-}
+// auto PWP::lib::numeric_methods::eigenvalue_problems::PowerMethod::calculateInverse(
+//     core::Matrix matrix, core::Vector vector, double threshold)
+//     -> std::pair<double, PWP::lib::core::Vector> {
+//     core::Matrix luDecomposition = matrices_factorization::LUDecomposition::execute(matrix);
+//     double eigenValueNew = 0;
+//     core::Vector vectorNew(vector);
+//     double erro = threshold + 1;
+//     while (erro > threshold) {
+//         double eigenValueOld = eigenValueNew;
+//         core::Vector vectorOld(vectorNew);
+//         core::Vector vectorOldNormalized = vectorOld.normalize();
+//     }
+// }

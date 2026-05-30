@@ -1,23 +1,26 @@
 #include "LUDecomposition.hpp"
 #include "Vector.hpp"
 #include <algorithm>
-#include <cstdlib>
+#include <cmath>
 #include <stdexcept>
 #include <sys/types.h>
 
-auto PWP::lib::numeric_methods::matrices_factorization::LUDecomposition::execute(
-    PWP::lib::core::Matrix &matrix) -> PWP::lib::core::Matrix {
-    PWP::lib::core::Matrix luMatrix(matrix);
-    PWP::lib::core::Vector scalingFactors(matrix.getRows());
-    PWP::lib::core::Vector permutation(matrix.getRows());
+PWP::lib::numeric_methods::matrices_factorization::LUDecomposition::LUDecomposition(
+    PWP::lib::core::Matrix &matrix)
+    : luDecomposition_(matrix), permutation_(matrix.getRows()) {}
+
+auto PWP::lib::numeric_methods::matrices_factorization::LUDecomposition::execute() -> core::Matrix {
+    uint n = this->luDecomposition_.getRows();
+    core::Vector scalingFactors(n);
     const double TINY = 1.0e-40;
     double big, temp;
-    int iMax;
-    double determinant = 1.0;
-    for (uint i = 0; i < matrix.getRows(); i++) {
+    uint iMax;
+
+    // Step 1: Find scaling factors for each row
+    for (uint i = 0; i < n; i++) {
         big = 0.0;
-        for (uint j = 0; j < matrix.getColumns(); j++) {
-            temp = std::abs(luMatrix[i][j]);
+        for (uint j = 0; j < n; j++) {
+            temp = std::abs(this->luDecomposition_[i][j]);
             big = std::max(temp, big);
         }
         if (big == 0.0) {
@@ -25,35 +28,49 @@ auto PWP::lib::numeric_methods::matrices_factorization::LUDecomposition::execute
         }
         scalingFactors[i] = 1.0 / big;
     }
-    for (uint k = 0; k < matrix.getRows(); k++) {
+
+    // Step 2: Perform LU decomposition with partial pivoting
+    for (uint k = 0; k < n; k++) {
         big = 0.0;
         iMax = k;
-        for (uint i = k; i < matrix.getRows(); i++) {
-            temp = scalingFactors[i] * std::abs(luMatrix[i][k]);
+
+        // Find pivot row
+        for (uint i = k; i < n; i++) {
+            temp = scalingFactors[i] * std::abs(this->luDecomposition_[i][k]);
             if (temp > big) {
                 big = temp;
                 iMax = i;
             }
         }
+
+        // Swap rows if necessary
         if (k != iMax) {
-            for (uint j = 0; j < matrix.getColumns(); j++) {
-                temp = luMatrix[iMax][j];
-                luMatrix[iMax][j] = luMatrix[k][j];
-                luMatrix[k][j] = temp;
+            for (uint j = 0; j < n; j++) {
+                temp = this->luDecomposition_[iMax][j];
+                this->luDecomposition_[iMax][j] = this->luDecomposition_[k][j];
+                this->luDecomposition_[k][j] = temp;
             }
-            determinant = -determinant;
             scalingFactors[iMax] = scalingFactors[k];
         }
-        permutation[k] = iMax;
-        if (luMatrix[k][k] == 0.0) {
-            luMatrix[k][k] = TINY;
+
+        // Store permutation
+        this->permutation_[k] = iMax;
+
+        // Check for singular matrix
+        if (std::abs(this->luDecomposition_[k][k]) < TINY) {
+            this->luDecomposition_[k][k] = TINY;
         }
-        for (uint i = k + 1; i < matrix.getRows(); i++) {
-            temp = luMatrix[i][k] /= luMatrix[k][k];
-            for (uint j = k + 1; j < matrix.getColumns(); j++) {
-                luMatrix[i][j] -= temp * luMatrix[k][j];
+
+        // Eliminate column below pivot
+        for (uint i = k + 1; i < n; i++) {
+            temp = this->luDecomposition_[i][k] / this->luDecomposition_[k][k];
+            this->luDecomposition_[i][k] = temp;
+
+            for (uint j = k + 1; j < n; j++) {
+                this->luDecomposition_[i][j] -= temp * this->luDecomposition_[k][j];
             }
         }
     }
-    return luMatrix;
+
+    return this->luDecomposition_;
 }
