@@ -47,3 +47,8 @@ A mathematical toolkit designed to solve numerical problems.
 `cmake --build build`
 
 `ctest --test-dir build`
+
+## Algumas bibliografia utilizada na construção do projeto:
+
+- PRESS, W. H. Numerical recipes : the art of scientific computing. Cambridge Uk ; New York: Cambridge University Press, 2007.
+- STEWART, James; CLEGG, Daniel; WATSON, Saleem. Cálculo: volume 1. 9. ed. São Paulo: Cengage Learning, 2021.
