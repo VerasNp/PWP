@@ -1,5 +1,7 @@
 # PWP (Penguin With a Pencil)
 
+> **Ainda em desenvolvimento, mas já é possível usar algumas funcionalidades**.
+
 A mathematical toolkit designed to solve numerical problems.
 
 ## Derivadas

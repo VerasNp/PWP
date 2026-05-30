@@ -6,10 +6,11 @@
 #include <sys/types.h>
 
 auto PWP::lib::numeric_methods::matrices_factorization::LUDecomposition::execute(
-    PWP::lib::core::Matrix &matrix) const -> PWP::lib::core::Matrix {
+    PWP::lib::core::Matrix &matrix) -> PWP::lib::core::Matrix {
     PWP::lib::core::Matrix luMatrix(matrix);
     PWP::lib::core::Vector scalingFactors(matrix.getRows());
     PWP::lib::core::Vector permutation(matrix.getRows());
+    const double TINY = 1.0e-40;
     double big, temp;
     int iMax;
     double determinant = 1.0;

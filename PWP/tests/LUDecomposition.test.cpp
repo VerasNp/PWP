@@ -6,8 +6,8 @@ TEST_CASE("LU Decomposition") {
     SUBCASE("should decompose a matrix into LU") {
         double data[] = {1, -2, 1, 2, -3, 1, 1, 4, 2};
         PWP::lib::core::Matrix matrix(3, 3, data);
-        PWP::lib::numeric_methods::matrices_factorization::LUDecomposition luDecomposition;
-        auto luMatrix = luDecomposition.execute(matrix);
+        auto luMatrix =
+            PWP::lib::numeric_methods::matrices_factorization::LUDecomposition::execute(matrix);
         CHECK_EQ(luMatrix[0][0], doctest::Approx(2));
         CHECK_EQ(luMatrix[0][1], doctest::Approx(-3));
         CHECK_EQ(luMatrix[0][2], doctest::Approx(1));
