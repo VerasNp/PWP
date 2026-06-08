@@ -21,4 +21,50 @@ TEST_CASE("Central O(h^2)") {
         Derivate central(MethodType::Central, DerivativeOrder::First, ErrorOrder::O_h2);
         CHECK(central.calculate(linear, xValue, hValue) == doctest::Approx(3.0).epsilon(hValue));
     }
+
+    SUBCASE("2a derivada") {
+        Derivate central(MethodType::Central, DerivativeOrder::Second, ErrorOrder::O_h2);
+        CHECK(central.calculate(quadratic, xValue, hValue) == doctest::Approx(2.0).epsilon(hValue));
+    }
+
+    SUBCASE("3a derivada") {
+        Derivate central(MethodType::Central, DerivativeOrder::Third, ErrorOrder::O_h2);
+        CHECK(central.calculate(cubic, xValue, hValue_d3) ==
+              doctest::Approx(6.0).epsilon(hValue_d3));
+    }
+
+    SUBCASE("4a derivada") {
+        Derivate central(MethodType::Central, DerivativeOrder::Fourth, ErrorOrder::O_h2);
+        CHECK(central.calculate(quartic, xValue, hValue_d4) ==
+              doctest::Approx(24.0).epsilon(hValue_d4));
+    }
+}
+
+TEST_CASE("Central O(h^4)") {
+    const double xValue = 1.234;
+    const double hValue = 1e-5;
+    const double hValue_d3 = 1e-3;
+    const double hValue_d4 = 1e-2;
+
+    SUBCASE("1a derivada") {
+        Derivate central(MethodType::Central, DerivativeOrder::First, ErrorOrder::O_h4);
+        CHECK(central.calculate(linear, xValue, hValue) == doctest::Approx(3.0).epsilon(hValue));
+    }
+
+    SUBCASE("2a derivada") {
+        Derivate central(MethodType::Central, DerivativeOrder::Second, ErrorOrder::O_h4);
+        CHECK(central.calculate(quadratic, xValue, hValue) == doctest::Approx(2.0).epsilon(hValue));
+    }
+
+    SUBCASE("3a derivada") {
+        Derivate central(MethodType::Central, DerivativeOrder::Third, ErrorOrder::O_h4);
+        CHECK(central.calculate(cubic, xValue, hValue_d3) ==
+              doctest::Approx(6.0).epsilon(hValue_d3));
+    }
+
+    SUBCASE("4a derivada") {
+        Derivate central(MethodType::Central, DerivativeOrder::Fourth, ErrorOrder::O_h4);
+        CHECK(central.calculate(quartic, xValue, hValue_d4) ==
+              doctest::Approx(24.0).epsilon(hValue_d4));
+    }
 }
