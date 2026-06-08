@@ -4,7 +4,6 @@
 
 namespace PWP::lib::numeric_methods::derivate::stencil::backward {
 
-// f'''(x) ≈ [f(x) - 3f(x-h) + 3f(x-2h) - f(x-3h)] / h³
 inline const derivate::stencil::Stencil thirdBackward4Points = {
     .derivateOrder = DerivativeOrder::Third,
     .errorOrder = ErrorOrder::O_h,
@@ -13,7 +12,6 @@ inline const derivate::stencil::Stencil thirdBackward4Points = {
     .denominator = 1.0,
     .denominator_power = 3};
 
-// f'''(x) ≈ [5f(x) - 18f(x-h) + 24f(x-2h) - 14f(x-3h) + 3f(x-4h)] / (2h³)
 inline const derivate::stencil::Stencil thirdBackward5Points = {
     .derivateOrder = DerivativeOrder::Third,
     .errorOrder = ErrorOrder::O_h2,
@@ -22,7 +20,6 @@ inline const derivate::stencil::Stencil thirdBackward5Points = {
     .denominator = 2.0,
     .denominator_power = 3};
 
-// f'''(x) ≈ [17f(x) - 71f(x-h) + 118f(x-2h) - 98f(x-3h) + 41f(x-4h) - 7f(x-5h)] / (4h³)
 inline const derivate::stencil::Stencil thirdBackward6Points = {
     .derivateOrder = DerivativeOrder::Third,
     .errorOrder = ErrorOrder::O_h3,
@@ -31,7 +28,6 @@ inline const derivate::stencil::Stencil thirdBackward6Points = {
     .denominator = 4.0,
     .denominator_power = 3};
 
-// f'''(x) ≈ [49f(x) - 232f(x-h) + 461f(x-2h) - 496f(x-3h) + 307f(x-4h) - 104f(x-5h) + 15f(x-6h)] / (8h³)
 inline const derivate::stencil::Stencil thirdBackward7Points = {
     .derivateOrder = DerivativeOrder::Third,
     .errorOrder = ErrorOrder::O_h4,
