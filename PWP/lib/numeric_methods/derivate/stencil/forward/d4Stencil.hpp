@@ -4,6 +4,7 @@
 
 namespace PWP::lib::numeric_methods::derivate::stencil::forward {
 inline const derivate::stencil::Stencil fourthForward5Points = {
+    .methodType = MethodType::Forward,
     .derivateOrder = DerivativeOrder::Fourth,
     .errorOrder = ErrorOrder::O_h,
     .coefficient = {1.0, -4.0, 6.0, -4.0, 1.0},
