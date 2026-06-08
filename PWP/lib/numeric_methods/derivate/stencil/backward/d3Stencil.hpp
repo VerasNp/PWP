@@ -31,6 +31,13 @@ inline const derivate::stencil::Stencil thirdBackward6Points = {
     .denominator = 4.0,
     .denominator_power = 3};
 
-inline const derivate::stencil::Stencil thirdBackward7Points = {};
+// f'''(x) ≈ [49f(x) - 232f(x-h) + 461f(x-2h) - 496f(x-3h) + 307f(x-4h) - 104f(x-5h) + 15f(x-6h)] / (8h³)
+inline const derivate::stencil::Stencil thirdBackward7Points = {
+    .derivateOrder = DerivativeOrder::Third,
+    .errorOrder = ErrorOrder::O_h4,
+    .coefficient = {49.0, -232.0, 461.0, -496.0, 307.0, -104.0, 15.0},
+    .offset = {0.0, -1.0, -2.0, -3.0, -4.0, -5.0, -6.0},
+    .denominator = 8.0,
+    .denominator_power = 3};
 
 } // namespace PWP::lib::numeric_methods::derivate::stencil::backward
