@@ -3,8 +3,34 @@
 #include "derivate/stencil/Stencil.hpp"
 
 namespace PWP::lib::numeric_methods::derivate::stencil::backward {
-inline const derivate::stencil::Stencil thirdBackward4Points = {};
-inline const derivate::stencil::Stencil thirdBackward5Points = {};
-inline const derivate::stencil::Stencil thirdBackward6Points = {};
+
+// f'''(x) ≈ [f(x) - 3f(x-h) + 3f(x-2h) - f(x-3h)] / h³
+inline const derivate::stencil::Stencil thirdBackward4Points = {
+    .derivateOrder = DerivativeOrder::Third,
+    .errorOrder = ErrorOrder::O_h,
+    .coefficient = {1.0, -3.0, 3.0, -1.0},
+    .offset = {0.0, -1.0, -2.0, -3.0},
+    .denominator = 1.0,
+    .denominator_power = 3};
+
+// f'''(x) ≈ [5f(x) - 18f(x-h) + 24f(x-2h) - 14f(x-3h) + 3f(x-4h)] / (2h³)
+inline const derivate::stencil::Stencil thirdBackward5Points = {
+    .derivateOrder = DerivativeOrder::Third,
+    .errorOrder = ErrorOrder::O_h2,
+    .coefficient = {5.0, -18.0, 24.0, -14.0, 3.0},
+    .offset = {0.0, -1.0, -2.0, -3.0, -4.0},
+    .denominator = 2.0,
+    .denominator_power = 3};
+
+// f'''(x) ≈ [17f(x) - 71f(x-h) + 118f(x-2h) - 98f(x-3h) + 41f(x-4h) - 7f(x-5h)] / (4h³)
+inline const derivate::stencil::Stencil thirdBackward6Points = {
+    .derivateOrder = DerivativeOrder::Third,
+    .errorOrder = ErrorOrder::O_h3,
+    .coefficient = {17.0, -71.0, 118.0, -98.0, 41.0, -7.0},
+    .offset = {0.0, -1.0, -2.0, -3.0, -4.0, -5.0},
+    .denominator = 4.0,
+    .denominator_power = 3};
+
 inline const derivate::stencil::Stencil thirdBackward7Points = {};
+
 } // namespace PWP::lib::numeric_methods::derivate::stencil::backward
