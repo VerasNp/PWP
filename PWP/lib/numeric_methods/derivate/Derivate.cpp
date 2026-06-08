@@ -1,6 +1,7 @@
 #include "derivate/Derivate.hpp"
 #include "derivate/DerivateBase.hpp"
 #include "derivate/stencil/Stencil.hpp"
+#include "derivate/stencil/central/CentralStencil.hpp"
 #include "derivate/stencil/forward/ForwardStencil.hpp"
 
 using namespace PWP::lib::numeric_methods::derivate;
@@ -21,7 +22,7 @@ auto Derivate::calculate(double (*func)(double), double xValue, double hValue) c
         throw std::invalid_argument("Método Backward não implementado");
         break;
     case MethodType::Central:
-        throw std::invalid_argument("Método Backward não implementado");
+        stencil = stencil::central::get(this->derivateOrder_, this->errorOrder_);
         break;
     }
     return stencil::apply(stencil, func, xValue, hValue);

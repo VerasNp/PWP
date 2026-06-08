@@ -10,7 +10,7 @@
 namespace PWP::lib::numeric_methods::derivate::stencil::central {
 
 inline const std::array<Stencil, 16> lookupArray = {
-    {firstCentral2Points, firstCentral3Points, firstCentral4Points, firstCentral5Points,
+    {firstCentral2Points, firstCentral3Points, firstCentral4Points,
      secondCentral3Points, secondCentral4Points, secondCentral5Points, secondCentral6Points,
      thirdCentral4Points, thirdCentral5Points, thirdCentral6Points, thirdCentral7Points,
      fourthCentral5Points, fourthCentral6Points, fourthCentral7Points, fourthCentral8Points}};
