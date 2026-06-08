@@ -3,6 +3,7 @@
 #include "derivate/stencil/Stencil.hpp"
 namespace PWP::lib::numeric_methods::derivate::stencil::forward {
 inline const derivate::stencil::Stencil thirdForward4Points = {
+    .methodType = MethodType::Forward,
     .derivateOrder = DerivativeOrder::Third,
     .errorOrder = ErrorOrder::O_h,
     .coefficient = {-1.0, 3.0, -3.0, 1.0},
