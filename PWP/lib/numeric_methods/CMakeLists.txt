@@ -21,6 +21,7 @@ target_sources(numeric_methods
     "${CMAKE_CURRENT_SOURCE_DIR}/integrate/Stencil.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/integrate/Integrate.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/integrate/NewtonCotes.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/integrate/GaussLegendre.hpp"
 )
 
 target_include_directories(numeric_methods
