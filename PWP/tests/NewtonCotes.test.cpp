@@ -7,15 +7,12 @@ using namespace PWP::lib::numeric_methods::integrate;
 using namespace PWP::lib::numeric_methods::integrate::NewtonCotes;
 
 namespace {
-// f(x) = (sin(2x) + 4x² + 3x)²   integral exata em [0,1] ≈ 17.8764703
 auto testFunc(double x) -> double {
     double v = std::sin(2 * x) + 4 * x * x + 3 * x;
     return v * v;
 }
 const double EXACT = 17.8764703;
 } // namespace
-
-// ── applyQuadrature (N=1) ────────────────────────────────────────────────────
 
 TEST_CASE("applyQuadrature N=1 — fechadas") {
     SUBCASE("grau 1 (Trapézio)") {
@@ -50,8 +47,6 @@ TEST_CASE("applyQuadrature N=1 — abertas") {
               doctest::Approx(17.88).epsilon(0.01));
     }
 }
-
-// ── integrate com subdivisão adaptativa ──────────────────────────────────────
 
 TEST_CASE("integrate adaptativo — fechadas") {
     const double tol = 1e-6;
@@ -92,8 +87,6 @@ TEST_CASE("integrate adaptativo — abertas") {
               doctest::Approx(EXACT).epsilon(tol * 10));
     }
 }
-
-// ── sanidade: integrais simples ───────────────────────────────────────────────
 
 TEST_CASE("integrate — constante e polinômio") {
     auto constant = [](double) -> double { return 1.0; };
