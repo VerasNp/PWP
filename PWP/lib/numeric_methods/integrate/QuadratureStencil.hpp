@@ -10,12 +10,8 @@ struct Stencil {
     double              denominator;
 };
 
-inline double applyQuadrature(
-    const Stencil& s,
-    double (*f)(double),
-    double a,
-    double b
-) {
+template<typename Fn>
+double applyRule(const Stencil& s, Fn f, double a, double b) {
     double h   = b - a;
     double sum = 0.0;
     for (std::size_t i = 0; i < s.coefficient.size(); ++i)

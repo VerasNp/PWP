@@ -1,6 +1,6 @@
 #pragma once
 
-#include "integrate/Stencil.hpp"
+#include "integrate/QuadratureStencil.hpp"
 
 namespace PWP::lib::numeric_methods::integrate::NewtonCotes {
 

@@ -1,5 +1,5 @@
 #include "integrate/ExponentialChange.hpp"
-#include "integrate/GaussLegendre.hpp"
+#include "integrate/gauss/GaussLegendre.hpp"
 #include "integrate/NewtonCotes.hpp"
 #include "doctest.h"
 #include <cmath>

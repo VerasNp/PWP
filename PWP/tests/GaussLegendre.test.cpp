@@ -1,5 +1,5 @@
 #include "integrate/Integrate.hpp"
-#include "integrate/GaussLegendre.hpp"
+#include "integrate/gauss/GaussLegendre.hpp"
 #include "doctest.h"
 #include <cmath>
 
@@ -14,20 +14,20 @@ auto testFunc(double x) -> double {
 const double EXACT = 17.8764703;
 } // namespace
 
-TEST_CASE("applyQuadrature N=1 — exatidão polinomial") {
+TEST_CASE("applyRule N=1 — exatidão polinomial") {
     SUBCASE("GL2 integra x³ exatamente em [0,1]") {
         auto f = [](double x) -> double { return x * x * x; };
-        CHECK(applyQuadrature(GL2, +f, 0.0, 1.0) ==
+        CHECK(applyRule(GL2, +f, 0.0, 1.0) ==
               doctest::Approx(0.25).epsilon(1e-14));
     }
     SUBCASE("GL3 integra x⁵ exatamente em [0,1]") {
         auto f = [](double x) -> double { return x*x*x*x*x; };
-        CHECK(applyQuadrature(GL3, +f, 0.0, 1.0) ==
+        CHECK(applyRule(GL3, +f, 0.0, 1.0) ==
               doctest::Approx(1.0/6.0).epsilon(1e-14));
     }
     SUBCASE("GL4 integra x⁷ exatamente em [0,1]") {
         auto f = [](double x) -> double { return x*x*x*x*x*x*x; };
-        CHECK(applyQuadrature(GL4, +f, 0.0, 1.0) ==
+        CHECK(applyRule(GL4, +f, 0.0, 1.0) ==
               doctest::Approx(0.125).epsilon(1e-14));
     }
 }

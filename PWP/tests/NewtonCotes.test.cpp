@@ -14,36 +14,36 @@ auto testFunc(double x) -> double {
 const double EXACT = 17.8764703;
 } // namespace
 
-TEST_CASE("applyQuadrature N=1 — fechadas") {
+TEST_CASE("applyRule N=1 — fechadas") {
     SUBCASE("grau 1 (Trapézio)") {
-        CHECK(applyQuadrature(Closed::Degree1, testFunc, 0, 1) ==
+        CHECK(applyRule(Closed::Degree1, testFunc, 0, 1) ==
               doctest::Approx(31.28).epsilon(0.01));
     }
     SUBCASE("grau 2 (Simpson 1/3)") {
-        CHECK(applyQuadrature(Closed::Degree2, testFunc, 0, 1) ==
+        CHECK(applyRule(Closed::Degree2, testFunc, 0, 1) ==
               doctest::Approx(17.87).epsilon(0.01));
     }
     SUBCASE("grau 3 (Simpson 3/8)") {
-        CHECK(applyQuadrature(Closed::Degree3, testFunc, 0, 1) ==
+        CHECK(applyRule(Closed::Degree3, testFunc, 0, 1) ==
               doctest::Approx(17.86).epsilon(0.01));
     }
 }
 
-TEST_CASE("applyQuadrature N=1 — abertas") {
+TEST_CASE("applyRule N=1 — abertas") {
     SUBCASE("grau 1") {
-        CHECK(applyQuadrature(Open::Degree1, testFunc, 0, 1) ==
+        CHECK(applyRule(Open::Degree1, testFunc, 0, 1) ==
               doctest::Approx(13.41).epsilon(0.01));
     }
     SUBCASE("grau 2 (Milne)") {
-        CHECK(applyQuadrature(Open::Degree2, testFunc, 0, 1) ==
+        CHECK(applyRule(Open::Degree2, testFunc, 0, 1) ==
               doctest::Approx(17.89).epsilon(0.01));
     }
     SUBCASE("grau 3") {
-        CHECK(applyQuadrature(Open::Degree3, testFunc, 0, 1) ==
+        CHECK(applyRule(Open::Degree3, testFunc, 0, 1) ==
               doctest::Approx(17.88).epsilon(0.01));
     }
     SUBCASE("grau 4") {
-        CHECK(applyQuadrature(Open::Degree4, testFunc, 0, 1) ==
+        CHECK(applyRule(Open::Degree4, testFunc, 0, 1) ==
               doctest::Approx(17.88).epsilon(0.01));
     }
 }
