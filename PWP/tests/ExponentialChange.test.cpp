@@ -9,11 +9,6 @@ using namespace PWP::lib::numeric_methods::integrate::ExponentialChange;
 using namespace PWP::lib::numeric_methods::integrate::GaussLegendre;
 using namespace PWP::lib::numeric_methods::integrate::NewtonCotes;
 
-// ─── simpleExp ───────────────────────────────────────────────────────────────
-// Substituição x(t) = (a+b)/2 + (b-a)/2·tanh(t).
-// Erro de truncamento ~ (1 - tanh(c)) para funções suaves.
-// Com c=6 (padrão): truncamento ≈ 1.2e-7 — adequado para tol=1e-6.
-
 TEST_CASE("simpleExp — funções suaves: ∫₀¹ x² dx = 1/3") {
     auto f = [](double x) -> double { return x * x; };
 
@@ -44,8 +39,6 @@ TEST_CASE("simpleExp — funções suaves: ∫₀¹ eˣ dx = e - 1") {
     }
 }
 
-// simpleExp com 1/√x: requer c grande pois truncamento ~ √(1-tanh(c)).
-// c=14 → truncamento ≈ 1.65e-6, dentro de tol=1e-4.
 TEST_CASE("simpleExp — singularidade fraca: ∫₀¹ 1/√x dx = 2 (c=14)") {
     auto f = [](double x) -> double { return 1.0 / std::sqrt(x); };
 
@@ -58,10 +51,6 @@ TEST_CASE("simpleExp — singularidade fraca: ∫₀¹ 1/√x dx = 2 (c=14)") {
               doctest::Approx(2.0).epsilon(1e-4));
     }
 }
-
-// ─── doubleExp ───────────────────────────────────────────────────────────────
-// Substituição tanh-sinh: decay duplo exponencial em ±c.
-// Truncamento ~ exp(-exp(c)) — excelente para singularidades nos endpoints.
 
 TEST_CASE("doubleExp — singularidade unilateral: ∫₀¹ 1/√x dx = 2") {
     auto f = [](double x) -> double { return 1.0 / std::sqrt(x); };

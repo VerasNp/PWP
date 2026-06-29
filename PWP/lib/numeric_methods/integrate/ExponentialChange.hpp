@@ -30,9 +30,6 @@ double adaptiveIntegrate(const Rule& rule, Fn f, double a, double b,
 
 } // namespace detail
 
-// x(s) = (a+b)/2 + (b-a)/2 * tanh(s),  s ∈ [-c, c]
-// dx/ds = (b-a)/2 * sech²(s)
-// Bom para singularidades unilaterais (endpoint único)
 template <typename Rule, typename Fn>
 double simpleExp(Fn f, double a, double b, const Rule& rule,
                  double c = 8.0, double tol = 1e-6) {
@@ -46,10 +43,6 @@ double simpleExp(Fn f, double a, double b, const Rule& rule,
     return detail::adaptiveIntegrate(rule, g, -c, c, tol);
 }
 
-// x(s) = (a+b)/2 + (b-a)/2 * tanh(π/2 * sinh(s)),  s ∈ [-c, c]
-// dx/ds = (b-a)/2 * π/2 * cosh(s) * sech²(π/2 * sinh(s))
-// Bom para singularidades bilaterais (ambos endpoints)
-// Limitar c ≤ 3.5 para evitar overflow em cosh(π/2 * sinh(s))
 template <typename Rule, typename Fn>
 double doubleExp(Fn f, double a, double b, const Rule& rule,
                  double c = 3.0, double tol = 1e-6) {
