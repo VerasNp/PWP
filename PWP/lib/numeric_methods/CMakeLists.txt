@@ -3,6 +3,8 @@ add_library(numeric_methods
     "${CMAKE_CURRENT_SOURCE_DIR}/eigenvalue_problems/PowerMethod.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/matrices_factorization/LUDecomposition.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/linear_systems/direct_methods/LUSolver.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/linear_systems/direct_methods/TridiagonalSolver.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/boundary_value_problems/FiniteDifferenceMethod.cpp"
 )
 
 target_sources(numeric_methods
@@ -18,6 +20,9 @@ target_sources(numeric_methods
     "${CMAKE_CURRENT_SOURCE_DIR}/matrices_factorization/LUDecomposition.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/linear_systems/ILinearSystem.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/linear_systems/direct_methods/LUSolver.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/linear_systems/direct_methods/TridiagonalSolver.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/boundary_value_problems/LinearBVP.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/boundary_value_problems/FiniteDifferenceMethod.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/integrate/QuadratureStencil.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/integrate/Integrate.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/integrate/NewtonCotes.hpp"
