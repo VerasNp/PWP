@@ -19,6 +19,20 @@ inline const derivate::stencil::Stencil firstForward3Points = {.methodType = Met
                                                                .offset = {0, 1.0, 2.0},
                                                                .denominator = 2.0,
                                                                .denominator_power = 1};
-inline const derivate::stencil::Stencil firstForward4Points = {};
-inline const derivate::stencil::Stencil firstForward5Points = {};
+inline const derivate::stencil::Stencil firstForward4Points = {
+    .methodType = MethodType::Forward,
+    .derivateOrder = DerivativeOrder::First,
+    .errorOrder = ErrorOrder::O_h3,
+    .coefficient = {-11.0, 18.0, -9.0, 2.0},
+    .offset = {0, 1.0, 2.0, 3.0},
+    .denominator = 6.0,
+    .denominator_power = 1};
+inline const derivate::stencil::Stencil firstForward5Points = {
+    .methodType = MethodType::Forward,
+    .derivateOrder = DerivativeOrder::First,
+    .errorOrder = ErrorOrder::O_h4,
+    .coefficient = {-25.0, 48.0, -36.0, 16.0, -3.0},
+    .offset = {0, 1.0, 2.0, 3.0, 4.0},
+    .denominator = 12.0,
+    .denominator_power = 1};
 } // namespace PWP::lib::numeric_methods::derivate::stencil::forward
