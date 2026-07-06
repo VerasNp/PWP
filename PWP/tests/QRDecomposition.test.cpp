@@ -80,8 +80,8 @@ TEST_CASE("QRDecomposition") {
 
 TEST_CASE("Householder seguido de QRDecomposition (pipeline)") {
     const double tolerance = 1e-6;
-    using PWP::lib::numeric_methods::transformations::Householder;
     using PWP::lib::numeric_methods::matrices_factorization::QRDecomposition;
+    using PWP::lib::numeric_methods::transformations::Householder;
     SUBCASE("QR reconstrói corretamente a matriz tridiagonalizada pelo Householder") {
         const auto A = buildSymmetricTestMatrix();
         auto T = Householder::apply(A);

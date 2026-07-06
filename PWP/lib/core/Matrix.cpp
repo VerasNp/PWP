@@ -1,5 +1,6 @@
 #include "Matrix.hpp"
 #include "Vector.hpp"
+#include <iostream>
 #include <stdexcept>
 #include <sys/types.h>
 #include <utility>
@@ -150,4 +151,13 @@ auto PWP::lib::core::Matrix::swapRows(uint row1, uint row2) -> void {
         throw std::out_of_range("Row index out of range");
     }
     std::swap(this->elements_[row1], this->elements_[row2]);
+}
+
+auto PWP::lib::core::Matrix::print() -> void {
+    for (uint i = 0; i < this->rows_; i++) {
+        for (uint j = 0; j < this->columns_; j++) {
+            std::cout << this->elements_[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
 }

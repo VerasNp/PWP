@@ -70,6 +70,12 @@ class Matrix {
     auto swapRows(uint row1, uint row2) -> void;
 
     /**
+     * @brief Print the matrix to the console
+     * 
+     */
+    auto print() -> void;
+
+    /**
      * @brief Accesses a row
      *
      * @param row Row index (0-based)
