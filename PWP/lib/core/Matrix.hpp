@@ -62,6 +62,20 @@ class Matrix {
     auto isSymmetric() -> bool;
 
     /**
+     * @brief Swap two rows of the matrix
+     * 
+     * @param row1 Index of the first row
+     * @param row2 Index of the second row
+     */
+    auto swapRows(uint row1, uint row2) -> void;
+
+    /**
+     * @brief Print the matrix to the console
+     * 
+     */
+    auto print() -> void;
+
+    /**
      * @brief Accesses a row
      *
      * @param row Row index (0-based)

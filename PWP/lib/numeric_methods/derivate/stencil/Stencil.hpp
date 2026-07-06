@@ -6,6 +6,7 @@
 
 namespace PWP::lib::numeric_methods::derivate::stencil {
 struct Stencil {
+    MethodType methodType;
     DerivativeOrder derivateOrder;
     ErrorOrder errorOrder;
     std::vector<double> coefficient;
