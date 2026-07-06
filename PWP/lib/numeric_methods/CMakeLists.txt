@@ -8,6 +8,11 @@ add_library(numeric_methods
     "${CMAKE_CURRENT_SOURCE_DIR}/linear_systems/direct_methods/LUSolver.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/linear_systems/direct_methods/TridiagonalSolver.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/boundary_value_problems/FiniteDifferenceMethod.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/pvi/EulerImplicitSolver.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/pvi/EulerExplicitSolver.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/pvi/PredictorCorrector4Solver.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/pvi/RungeKutta4Solver.cpp"
+
 )
 
 target_sources(numeric_methods
@@ -38,6 +43,13 @@ target_sources(numeric_methods
     "${CMAKE_CURRENT_SOURCE_DIR}/integrate/gauss/GaussLaguerre.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/integrate/gauss/GaussChebyshev.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/integrate/ExponentialChange.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/pvi/EulerImplicitSolver.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/pvi/EulerExplicitSolver.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/pvi/PredictorCorrector4Solver.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/pvi/RungeKutta4Solver.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/pvi/State.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/pvi/utils/FixedPointIteration.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/pvi/ODESolver.hpp"
 )
 
 target_include_directories(numeric_methods

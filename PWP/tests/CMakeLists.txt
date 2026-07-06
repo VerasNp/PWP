@@ -16,9 +16,10 @@ set(TestsToRun
     "${CMAKE_CURRENT_SOURCE_DIR}/GaussChebyshev.test.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/TridiagonalSolver.test.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/FiniteDifferenceMethod.test.cpp"
-    # "${CMAKE_CURRENT_SOURCE_DIR}/PowerMethod.test.cpp"
-    # "${CMAKE_CURRENT_SOURCE_DIR}/LUDecomposition.test.cpp"
-    # "${CMAKE_CURRENT_SOURCE_DIR}/LUSolver.test.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/EulerExplicitSolver.test.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/EulerImplicitSolver.test.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/RungeKutta4Solver.test.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/PredictorCorrector4Solver.test.cpp"
 )
 
 foreach(test ${TestsToRun})
