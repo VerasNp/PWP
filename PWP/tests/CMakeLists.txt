@@ -8,6 +8,17 @@ set(TestsToRun
     "${CMAKE_CURRENT_SOURCE_DIR}/PowerMethod.test.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/Householder.test.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/QRDecomposition.test.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/NewtonCotes.test.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/GaussLegendre.test.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/ExponentialChange.test.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/GaussHermite.test.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/GaussLaguerre.test.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/GaussChebyshev.test.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/TridiagonalSolver.test.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/FiniteDifferenceMethod.test.cpp"
+    # "${CMAKE_CURRENT_SOURCE_DIR}/PowerMethod.test.cpp"
+    # "${CMAKE_CURRENT_SOURCE_DIR}/LUDecomposition.test.cpp"
+    # "${CMAKE_CURRENT_SOURCE_DIR}/LUSolver.test.cpp"
 )
 
 foreach(test ${TestsToRun})
