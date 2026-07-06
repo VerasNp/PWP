@@ -5,9 +5,9 @@ set(TestsToRun
     "${CMAKE_CURRENT_SOURCE_DIR}/Forward.test.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/Central.test.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/Backward.test.cpp"
-    # "${CMAKE_CURRENT_SOURCE_DIR}/PowerMethod.test.cpp"
-    # "${CMAKE_CURRENT_SOURCE_DIR}/LUDecomposition.test.cpp"
-    # "${CMAKE_CURRENT_SOURCE_DIR}/LUSolver.test.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/PowerMethod.test.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/Householder.test.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/QRDecomposition.test.cpp"
 )
 
 foreach(test ${TestsToRun})

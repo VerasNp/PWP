@@ -1,83 +1,103 @@
 #include "eigenvalue_problems/PowerMethod.hpp"
 #include "Matrix.hpp"
-#include "Vector.hpp"
-#include "doctest.h"
-#include <cstdlib>
+#include "linear_systems/direct_methods/GaussElimination.hpp"
+#include <cmath>
+#include <doctest.h>
 
-TEST_CASE("PowerMethod") {
-    SUBCASE("should calculate eigenvalue and eigenvector of 2x2 matrix") {
-        double matrixValues[] = {4, 1, 1, 3};
-        double vectorValues[] = {1, 1};
-        PWP::lib::core::Matrix matrix(2, 2, matrixValues);
-        PWP::lib::core::Vector vector(2, vectorValues);
-        auto result = PWP::lib::numeric_methods::eigenvalue_problems::PowerMethod::calculateRegular(
-            matrix, vector, 1e-6);
-        double eigenValue = result.first;
-        PWP::lib::core::Vector eigenVector = result.second;
-        CHECK_EQ(eigenValue, doctest::Approx(4.618).epsilon(0.01));
-        CHECK_EQ(eigenVector[0], doctest::Approx(eigenVector[0])); // normalized
-    }
+using PWP::lib::core::Matrix;
+using PWP::lib::core::Vector;
+using PWP::lib::numeric_methods::eigenvalue_problems::PowerMethod;
 
-    SUBCASE("should calculate eigenvalue of identity matrix") {
-        double matrixValues[] = {1, 0, 0, 1};
-        double vectorValues[] = {1, 1};
-        PWP::lib::core::Matrix matrix(2, 2, matrixValues);
-        PWP::lib::core::Vector vector(2, vectorValues);
-        auto result = PWP::lib::numeric_methods::eigenvalue_problems::PowerMethod::calculateRegular(
-            matrix, vector, 1e-6);
-        double eigenValue = result.first;
-        CHECK_EQ(eigenValue, doctest::Approx(1.0).epsilon(0.01));
-    }
+namespace {
 
-    SUBCASE("should calculate eigenvalue of diagonal matrix") {
-        double matrixValues[] = {5, 0, 0, 2};
-        double vectorValues[] = {1, 1};
-        PWP::lib::core::Matrix matrix(2, 2, matrixValues);
-        PWP::lib::core::Vector vector(2, vectorValues);
+auto buildTestMatrix() -> PWP::lib::core::Matrix {
+    PWP::lib::core::Matrix m(3, 3);
+    m[0][0] = 4;
+    m[0][1] = 1;
+    m[0][2] = 0;
+    m[1][0] = 1;
+    m[1][1] = 4;
+    m[1][2] = 1;
+    m[2][0] = 0;
+    m[2][1] = 1;
+    m[2][2] = 4;
+    return m;
+}
 
-        auto result = PWP::lib::numeric_methods::eigenvalue_problems::PowerMethod::calculateRegular(
-            matrix, vector, 1e-6);
-        double eigenValue = result.first;
-        CHECK_EQ(eigenValue, doctest::Approx(5.0).epsilon(0.01));
-    }
+auto buildInitialVector() -> PWP::lib::core::Vector {
+    PWP::lib::core::Vector v(3);
+    v[0] = 1.0;
+    v[1] = 1.0;
+    v[2] = 1.0;
+    return v;
+}
 
-    SUBCASE("should calculate eigenvalue of 3x3 symmetric matrix") {
-        double matrixValues[] = {4, 1, 0, 1, 3, 1, 0, 1, 2};
-        double vectorValues[] = {1, 1, 1};
-        PWP::lib::core::Matrix matrix(3, 3, matrixValues);
-        PWP::lib::core::Vector vector(3, vectorValues);
-        auto result = PWP::lib::numeric_methods::eigenvalue_problems::PowerMethod::calculateRegular(
-            matrix, vector, 1e-6);
-        double eigenValue = result.first;
-        PWP::lib::core::Vector eigenVector = result.second;
+} // namespace
 
-        CHECK_GT(eigenValue, 4.0);
+TEST_CASE("PowerMethod::calculateRegular") {
+    const double thresholdValue = 1e-6;
+    PWP::lib::core::Matrix matrix = buildTestMatrix();
+    PWP::lib::core::Vector initial = buildInitialVector();
 
-        CHECK_EQ(eigenVector.magnitude(), doctest::Approx(1.0).epsilon(0.01));
-    }
-
-    SUBCASE("should return normalized eigenvector") {
-        double matrixValues[] = {2, 1, 1, 2};
-        double vectorValues[] = {1, 0};
-        PWP::lib::core::Matrix matrix(2, 2, matrixValues);
-        PWP::lib::core::Vector vector(2, vectorValues);
-        auto result = PWP::lib::numeric_methods::eigenvalue_problems::PowerMethod::calculateRegular(
-            matrix, vector, 1e-6);
-        PWP::lib::core::Vector eigenVector = result.second;
-        CHECK_EQ(eigenVector.magnitude(), doctest::Approx(1.0).epsilon(0.01));
-    }
-
-    SUBCASE("should converge with different thresholds") {
-        double matrixValues[] = {4, 1, 1, 3};
-        double vectorValues[] = {1, 1};
-        PWP::lib::core::Matrix matrix(2, 2, matrixValues);
-        PWP::lib::core::Vector vector(2, vectorValues);
-        auto result1 =
+    SUBCASE("converge para o autovalor dominante") {
+        auto [eigenValue, eigenVector] =
             PWP::lib::numeric_methods::eigenvalue_problems::PowerMethod::calculateRegular(
-                matrix, vector, 1e-3);
-        auto result2 =
+                matrix, initial, thresholdValue);
+
+        CHECK(eigenValue == doctest::Approx(4.0 + std::sqrt(2.0)).epsilon(thresholdValue));
+    }
+
+    SUBCASE("autovetor retornado é normalizado") {
+        auto [eigenValue, eigenVector] =
             PWP::lib::numeric_methods::eigenvalue_problems::PowerMethod::calculateRegular(
-                matrix, vector, 1e-9);
-        CHECK_LT(std::abs(result2.first - 4.618), std::abs(result1.first - 4.618));
+                matrix, initial, thresholdValue);
+
+        double normSquared = 0.0;
+        for (int i = 0; i < 3; ++i) {
+            normSquared += eigenVector[i] * eigenVector[i];
+        }
+
+        CHECK(std::sqrt(normSquared) == doctest::Approx(1.0).epsilon(1e-9));
+    }
+}
+
+TEST_CASE("PowerMethod::calculateInverse") {
+    const double thresholdValue = 1e-6;
+    PWP::lib::core::Matrix matrix = buildTestMatrix();
+    PWP::lib::core::Vector initial = buildInitialVector();
+    auto solver = std::make_shared<
+        PWP::lib::numeric_methods::linear_systems::direct_methods::GaussElimination>();
+
+    SUBCASE("converge para o autovalor de menor módulo") {
+        auto [eigenValue, eigenVector] =
+            PWP::lib::numeric_methods::eigenvalue_problems::PowerMethod::calculateInverse(
+                matrix, initial, thresholdValue, solver);
+
+        CHECK(eigenValue == doctest::Approx(4.0 - std::sqrt(2.0)).epsilon(thresholdValue));
+    }
+}
+
+TEST_CASE("PowerMethod::calculateShifted") {
+    const double thresholdValue = 1e-6;
+    PWP::lib::core::Matrix matrix = buildTestMatrix();
+    PWP::lib::core::Vector initial = buildInitialVector();
+
+    SUBCASE("shift desloca espectro e converge para o autovalor mais distante dele") {
+        const double shiftValue = 3.0;
+        auto [eigenValue, eigenVector] =
+            PWP::lib::numeric_methods::eigenvalue_problems::PowerMethod::calculateShifted(
+                matrix, initial, thresholdValue, shiftValue);
+        CHECK(eigenValue == doctest::Approx(4.0 + std::sqrt(2.0)).epsilon(thresholdValue));
+    }
+
+    SUBCASE("shift zero se comporta como o regular") {
+        auto [eigenValueShifted, vectorShifted] =
+            PWP::lib::numeric_methods::eigenvalue_problems::PowerMethod::calculateShifted(
+                matrix, initial, thresholdValue, 0.0);
+        auto [eigenValueRegular, vectorRegular] =
+            PWP::lib::numeric_methods::eigenvalue_problems::PowerMethod::calculateRegular(
+                matrix, initial, thresholdValue);
+
+        CHECK(eigenValueShifted == doctest::Approx(eigenValueRegular).epsilon(1e-9));
     }
 }

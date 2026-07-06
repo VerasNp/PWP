@@ -2,7 +2,9 @@ add_library(numeric_methods
     "${CMAKE_CURRENT_SOURCE_DIR}/derivate/Derivate.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/eigenvalue_problems/PowerMethod.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/matrices_factorization/LUDecomposition.cpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/linear_systems/direct_methods/LUSolver.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/linear_systems/direct_methods/GaussElimination.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/transformations/Householder.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/matrices_factorization/QRDecomposition.cpp"
 )
 
 target_sources(numeric_methods
@@ -18,6 +20,9 @@ target_sources(numeric_methods
     "${CMAKE_CURRENT_SOURCE_DIR}/matrices_factorization/LUDecomposition.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/linear_systems/ILinearSystem.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/linear_systems/direct_methods/LUSolver.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/linear_systems/direct_methods/GaussElimination.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/transformations/Householder.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/matrices_factorization/QRDecomposition.hpp"
 )
 
 target_include_directories(numeric_methods
